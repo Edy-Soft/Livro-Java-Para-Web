@@ -1,0 +1,9 @@
+eclipse.preferences.version=1
+encoding//src/com/livro/capitulo3/categoria/CategoriaDAO.java=UTF-8
+encoding//src/com/livro/capitulo3/cliente/ClienteDAO.java=UTF-8
+encoding//src/com/livro/capitulo3/consulta/Consultas.java=UTF-8
+encoding//src/com/livro/capitulo3/endereco/EnderecoDAO.java=UTF-8
+encoding//src/com/livro/capitulo3/filme/FilmeDAO.java=UTF-8
+encoding//src/com/livro/capitulo3/locacao/LocacaoDAO.java=UTF-8
+encoding//src/com/livro/capitulo3/locadora/Locadora.java=UTF-8
+encoding//src/com/livro/capitulo3/midia/MidiaDAO.java=UTF-8
