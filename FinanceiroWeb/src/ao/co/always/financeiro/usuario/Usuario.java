@@ -3,6 +3,7 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
+@SuppressWarnings("serial")
 @Entity
 public class Usuario implements Serializable {
 	

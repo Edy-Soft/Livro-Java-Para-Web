@@ -1,0 +1,41 @@
+package ao.co.always.financeiro.web.filter;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import org.hibernate.SessionFactory;
+
+import ao.co.always.financeiro.util.HibernateUtil;
+
+public class ConexaoHibernateFilter implements Filter{
+	
+	private SessionFactory sf;
+	
+	public void init(FilterConfig config) throws ServletException{
+		this.sf = HibernateUtil.getSessionFactory();
+	}
+	
+	public void doFilter(ServletRequest request, ServletResponse response,
+				FilterChain chain) throws ServletException{
+		try{
+			this.sf.getCurrentSession().beginTransaction();
+			chain.doFilter(request, response);
+			this.sf.getCurrentSession().beginTransaction().commit();
+			this.sf.getCurrentSession().close();
+		}catch(Throwable ex){
+			try{
+				if(this.sf.getCurrentSession().getTransaction().isActive()){
+					this.sf.getCurrentSession().getTransaction().rollback();
+				}
+			}catch(Throwable t){
+				t.printStackTrace();
+			}
+			throw new ServletException(ex);
+		}
+	}
+	public void destroy(){
+	}
+
+}
