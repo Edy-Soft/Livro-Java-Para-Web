@@ -6,7 +6,7 @@
 	
 	<h:head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-		<title>Cadastro de Usu´srios</title>
+		<title>Cadastro de Usuarios</title>
 	</h:head>
 
 <h:body>
@@ -15,6 +15,7 @@
 		<h:messages />
 		<h:inputHidden value="#{usuarioBean.usuario.codigo}" />
 		<h:inputHidden value="#{usuarioBean.usuario.activo}" />
+		<h:inputHidden value="#{usuarioBean.destinoSalvar}" />
 		
 		<h:panelGrid columns="2">
 			<h:outputLabel value="Nome:" for="nome" />
@@ -25,8 +26,8 @@
 			 
 			 <h:outputLabel value="Data Nasciemnto:" for="data"/>
 			<h:inputText id="data" label="Data Nascimento" value="#{usuarioBean.usuario.nascimento}"
-						 size="10" maxlength="10" required="true" requiredMessage="Insira a sua data de nascimento">
-						 <f:convertDateTime dateStyle="medium" />
+						 size="10" maxlength="10">
+						 <f:convertDateTime  dateStyle="default" />
 			</h:inputText>
 			
 			<h:outputLabel value="Telefone:" for="telefone"/>
@@ -44,7 +45,7 @@
 			
 			<h:outputLabel value="Idioma:" for="idioma"/>
 			<h:selectOneMenu id="idioma" label="Idioma" value="#{usuarioBean.usuario.idioma}">
-				<f:selectItem itemValue="pt_BR" itemLabel="Português"/>
+				<f:selectItem itemValue="pt_BR" itemLabel="Brasileiro"/>
 				<f:selectItem itemValue="en_US" itemLabel="English"/>
 				<f:selectItem itemValue="es_ES" itemLabel="Espanhol"/>
 			</h:selectOneMenu>
@@ -52,9 +53,9 @@
 			<h:outputLabel value="Login:" for="login"/>
 			<h:inputText id="login" label="Login" value="#{usuarioBean.usuario.login}"
 						 size="15" maxlength="15" rendered="true"
-						 validatorMessage="Login deve ter só deve de 5 à 15 caracteres
+						 validatorMessage="Login só deve ter de 5 à 15 caracteres
 						 e só pode aceitar os simbolos '.' e '_' ">
-						 <f:validateRegex pattern="([a-z]|[0-9]|[.]|[_]){5.15}"/>
+						 <f:validateRegex pattern="([a-z]|[0-9]|[.]|[_]){5,15}"/>
 			</h:inputText>
 			
 			<h:outputLabel value="Senha:" for="senha" />
@@ -62,7 +63,7 @@
 						   size="10" maxlength="10" required="true" redisplay="true"/>
 						   
 			<h:outputLabel value="Confirma Senha:" for="confirmarsenha"/>
-			<h:inputSecret id="confirmarSenha" label="Confirmar Senha" value="#{usuarioBean.confirmaSenha}"
+			<h:inputSecret id="confirmaSenha" label="Confirmar Senha" value="#{usuarioBean.confirmaSenha}"
 						   size="10" maxlength="10" required="true" redisplay="true" 
 						   requiredMessage="Confirme a sua senha"/>
 		</h:panelGrid>
