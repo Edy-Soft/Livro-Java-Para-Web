@@ -13,6 +13,7 @@
 		
 		<!-- Mapeando classes -->
 		<mapping class="ao.co.always.financeiro.usuario.Usuario"/>
+		<mapping class="ao.co.always.financeiro.conta.Conta" />
 		
 	</session-factory>
 </hibernate-configuration>
