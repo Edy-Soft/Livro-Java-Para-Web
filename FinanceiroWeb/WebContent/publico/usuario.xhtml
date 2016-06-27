@@ -24,11 +24,10 @@
 			 			<f:validateLength minimum="10" maximum="30" />
 			 </h:inputText>
 			 
-			 <h:outputLabel value="Data Nasciemnto:" for="data"/>
-			<h:inputText id="data" label="Data Nascimento" value="#{usuarioBean.usuario.nascimento}"
-						 size="10" maxlength="10">
-						 <f:convertDateTime  dateStyle="default" />
-			</h:inputText>
+			 <h:outputLabel value="Data Nascimento:" for="data"/>
+				<h:inputText id="data" label="Data Nascimento" value="#{usuarioBean.usuario.nascimento}" size="10" maxlength="10" required="true">
+					<f:convertDateTime pattern="dd/MM/yyyy"/>
+				</h:inputText>
 			
 			<h:outputLabel value="Telefone:" for="telefone"/>
 			<h:inputText id="telefone" label="Telefone" value="#{usuarioBean.usuario.telefone}" size="10"

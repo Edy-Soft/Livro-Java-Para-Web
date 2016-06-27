@@ -51,7 +51,7 @@ public class Usuario implements Serializable {
 	public boolean isActivo() {return activo;}
 	public void setActivo(boolean activo) {this.activo = activo;}
 	public Set<String> getPermissao() {return permissao;}
-	public void setPermissao(Set<String> permissão) {this.permissao = permissão;
+	public void setPermissao(Set<String> permissao) {this.permissao = permissao;
 	}
 	@Override
 	public int hashCode() {
