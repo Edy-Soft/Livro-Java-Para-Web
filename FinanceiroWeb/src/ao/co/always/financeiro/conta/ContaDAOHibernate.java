@@ -29,7 +29,7 @@ public class ContaDAOHibernate implements ContaDAO{
 		criteria.add(Restrictions.eq("usuario", usuario));
 		return criteria.list();
 	}
-	public Conta buscarFavorito(Usuario usuario){
+	public Conta buscarFavorita(Usuario usuario){
 		Criteria criteria = this.session.createCriteria(Conta.class);
 		criteria.add(Restrictions.eq("usuario", usuario));
 		criteria.add(Restrictions.eq("favorita", true));

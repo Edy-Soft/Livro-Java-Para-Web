@@ -8,5 +8,5 @@ public interface ContaDAO {
 	public void excluir(Conta conta);
 	public Conta carregar (Integer conta);
 	public List<Conta> listar(Usuario usuario);
-	public Conta buscarFavorito(Usuario usuario);
+	public Conta buscarFavorita(Usuario usuario);
 }

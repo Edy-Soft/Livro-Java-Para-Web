@@ -1,8 +1,6 @@
 package ao.co.always.financeiro.conta;
 import java.io.Serializable;
 import java.util.Date;
-
-import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -45,11 +43,9 @@ public class Conta implements Serializable {
 	public Integer getIdconta() {
 		return Idconta;
 	}
-
 	public void setIdconta(Integer idconta) {
 		Idconta = idconta;
 	}
-
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -69,27 +65,21 @@ public class Conta implements Serializable {
 	public Date getDataCadastro() {
 		return dataCadastro;
 	}
-
 	public void setDataCadastro(Date dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
-
 	public float getSaldoInicila() {
 		return saldoInicila;
 	}
-
 	public void setSaldoInicila(float saldoInicila) {
 		this.saldoInicila = saldoInicila;
 	}
-
 	public boolean isFavorita() {
 		return favorita;
 	}
-
 	public void setFavorita(boolean favorita) {
 		this.favorita = favorita;
 	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -102,7 +92,6 @@ public class Conta implements Serializable {
 		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -138,8 +127,5 @@ public class Conta implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
-	
 
 }
