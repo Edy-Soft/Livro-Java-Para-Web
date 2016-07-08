@@ -15,7 +15,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import ao.co.always.financeiro.usuario.Usuario;
 
 @Entity
-@Table(name="conta_usuario")
+@Table(name="conta_bancaria")
 public class Conta implements Serializable {
 	
 	@Id
@@ -25,7 +25,7 @@ public class Conta implements Serializable {
 	
 	@ManyToOne
 	@OnDelete(action=OnDeleteAction.CASCADE)
-	@JoinColumn(name="id_conta", nullable = false)
+	@JoinColumn(name="id_usuario", nullable = false)
 	private Usuario usuario;
 	
 	@Column(name="desc_conta")
@@ -35,7 +35,7 @@ public class Conta implements Serializable {
 	private Date dataCadastro;
 	
 	@Column(name="saldo_inicial")
-	private float saldoInicila;
+	private float saldoInicial;
 	
 	@Column(name="favorita")
 	private boolean favorita;
@@ -69,10 +69,10 @@ public class Conta implements Serializable {
 		this.dataCadastro = dataCadastro;
 	}
 	public float getSaldoInicila() {
-		return saldoInicila;
+		return saldoInicial;
 	}
 	public void setSaldoInicila(float saldoInicila) {
-		this.saldoInicila = saldoInicila;
+		this.saldoInicial = saldoInicila;
 	}
 	public boolean isFavorita() {
 		return favorita;
@@ -88,7 +88,7 @@ public class Conta implements Serializable {
 		result = prime * result + ((dataCadastro == null) ? 0 : dataCadastro.hashCode());
 		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
 		result = prime * result + (favorita ? 1231 : 1237);
-		result = prime * result + Float.floatToIntBits(saldoInicila);
+		result = prime * result + Float.floatToIntBits(saldoInicial);
 		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
 		return result;
 	}
@@ -118,7 +118,7 @@ public class Conta implements Serializable {
 			return false;
 		if (favorita != other.favorita)
 			return false;
-		if (Float.floatToIntBits(saldoInicila) != Float.floatToIntBits(other.saldoInicila))
+		if (Float.floatToIntBits(saldoInicial) != Float.floatToIntBits(other.saldoInicial))
 			return false;
 		if (usuario == null) {
 			if (other.usuario != null)

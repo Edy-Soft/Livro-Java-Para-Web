@@ -16,15 +16,23 @@
 		<br />
 		
 	<h:form>
+		<h:commandButton value="Conta" action="conta"/>
+		
+		<h:selectOneMenu value="#{contextoBean.contaActiva.Idconta}"
+			valueChangeListener="#{contextoBean.setContaActiva}"
+			rendered="#{!empty contextoBean}" onchange="submit()">
+			
+			<f:selectItem value="contaBean.lista" var="conta" itemValue="#{conta.conta}" 
+				itemLabel="#{conta.descricao}"/>
+		</h:selectOneMenu>
+	
 		<sec:ifAnyGranted roles="ROLE_ADMINISTRADOR" >
-			<h:commandLink action="/admin/principal" title="Adinistrativo">
-				<h:graphicImage library="imagens" name="administrativo16.png"/>
-			</h:commandLink>
+			<h:commandLink action="/admin/principal" title="Adinistrativo"/>
 		</sec:ifAnyGranted>
 		
-		<a onclick="document.location='#{request.contextPath}/j_spring_security_logout'" title="Sair">
+		<input type="button" value="logout"
+		 onclick="document.location='#{request.contextPath}/j_spring_security_logout'"/>
 			<h:graphicImage library="imagens"  name="logout16.png"/>
-		</a>
 	</h:form>
 		
 </h:body>
