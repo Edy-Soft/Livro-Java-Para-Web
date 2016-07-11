@@ -14,6 +14,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import ao.co.always.financeiro.usuario.Usuario;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name="conta_bancaria")
 public class Conta implements Serializable {
@@ -21,7 +22,7 @@ public class Conta implements Serializable {
 	@Id
 	@GeneratedValue
 	@Column(name="id_conta")
-	private Integer Idconta;
+	private Integer idConta;
 	
 	@ManyToOne
 	@OnDelete(action=OnDeleteAction.CASCADE)
@@ -40,11 +41,11 @@ public class Conta implements Serializable {
 	@Column(name="favorita")
 	private boolean favorita;
 
-	public Integer getIdconta() {
-		return Idconta;
+	public Integer getIdConta() {
+		return idConta;
 	}
-	public void setIdconta(Integer idconta) {
-		Idconta = idconta;
+	public void setIdConta(Integer idconta) {
+		this.idConta = idconta;
 	}
 	public Usuario getUsuario() {
 		return usuario;
@@ -68,11 +69,11 @@ public class Conta implements Serializable {
 	public void setDataCadastro(Date dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
-	public float getSaldoInicila() {
+	public float getSaldoInicial() {
 		return saldoInicial;
 	}
-	public void setSaldoInicila(float saldoInicila) {
-		this.saldoInicial = saldoInicila;
+	public void setSaldoInicial(float saldoInicial) {
+		this.saldoInicial = saldoInicial;
 	}
 	public boolean isFavorita() {
 		return favorita;
@@ -84,7 +85,7 @@ public class Conta implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((Idconta == null) ? 0 : Idconta.hashCode());
+		result = prime * result + ((idConta == null) ? 0 : idConta.hashCode());
 		result = prime * result + ((dataCadastro == null) ? 0 : dataCadastro.hashCode());
 		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
 		result = prime * result + (favorita ? 1231 : 1237);
@@ -101,10 +102,10 @@ public class Conta implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Conta other = (Conta) obj;
-		if (Idconta == null) {
-			if (other.Idconta != null)
+		if (idConta == null) {
+			if (other.idConta != null)
 				return false;
-		} else if (!Idconta.equals(other.Idconta))
+		} else if (!idConta.equals(other.idConta))
 			return false;
 		if (dataCadastro == null) {
 			if (other.dataCadastro != null)

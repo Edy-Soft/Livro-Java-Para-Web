@@ -13,16 +13,17 @@
 		Usuário logado: #{request.remoteUser}
 		<br />
 		Nome do usuario logado #{contextoBean.usuarioLogado.nome}
+		<br/>
 		<br />
 		
 	<h:form>
 		<h:commandButton value="Conta" action="conta"/>
 		
-		<h:selectOneMenu value="#{contextoBean.contaActiva.Idconta}"
+		<h:selectOneMenu value="#{contextoBean.contaActiva.idConta}"
 			valueChangeListener="#{contextoBean.setContaActiva}"
 			rendered="#{!empty contextoBean}" onchange="submit()">
 			
-			<f:selectItem value="contaBean.lista" var="conta" itemValue="#{conta.conta}" 
+			<f:selectItems value="#{contaBean.lista}" var="conta" itemValue="#{conta.idConta}" 
 				itemLabel="#{conta.descricao}"/>
 		</h:selectOneMenu>
 	
@@ -32,7 +33,6 @@
 		
 		<input type="button" value="logout"
 		 onclick="document.location='#{request.contextPath}/j_spring_security_logout'"/>
-			<h:graphicImage library="imagens"  name="logout16.png"/>
 	</h:form>
 		
 </h:body>

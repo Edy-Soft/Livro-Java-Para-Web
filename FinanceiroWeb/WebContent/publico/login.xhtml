@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:f="http://java.sun.com/jsf/core"
-	  xmlns:h="http://java.sun.com/jsf/html">
-	  
-	<h:head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-		<title>Login</title>
-	</h:head>
-<h:body>
+	  xmlns:f ="http://java.sun.com/jsf/core"
+	  xmlns:h ="http://java.sun.com/jsf/html"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:c ="http://java.sun.com/jstl/core">
+
+<ui:composition template="/templates/principal.xhtml">
+<ui:define name="corpo">
 	<h:form>
 		<h:commandButton action="#{usuarioBean.novo}" value="Registe-se"/>
 	</h:form>
-	
 	<h:panelGroup rendered ="#{!empty param.login_error}">
 		<span style="font-color:red">Erro ao efectuar o login</span><br />
 		<br />
@@ -31,7 +29,7 @@
 		</tr>
 		<tr>
 			<td align="right"> <input type="checkbox" name="_spring_security_remember_me"/></td> 
-			<td>Entrar aotomaticamente</td>
+			<td>Entrar automaticamente</td>
 		</tr>
 		<tr>
 			<td></td>
@@ -42,5 +40,6 @@
 		document.getElementById("login").j_username.value = "#{SPRING_SECURITY_LAST_USERNAME}";
 	</script>
 	</form>
-</h:body>
+</ui:define>
+</ui:composition>
 </html>
