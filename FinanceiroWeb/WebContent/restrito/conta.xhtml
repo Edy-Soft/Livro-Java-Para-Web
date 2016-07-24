@@ -3,14 +3,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	   xmlns:f="http://java.sun.com/jsf/core"
 	   xmlns:h="http://java.sun.com/jsf/html"
+	   xmlns:ui="http://java.sun.com/jsf/facelets"
 	   xmlns:sec="http://www.springframework.org/security/facelets/tags">
 
-	<h:head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-		<title>Cadastro de Contas</title>
-	</h:head>
-<h:body>
-	<h1>Cadastro de Contas</h1>
+	<ui:composition template="/templates/interna.xhtml">
+	<ui:define name="titulo">
+		Contas
+	</ui:define>
+	<ui:define name="corpo">
 	
 	<h:form id="edicao">
 		<!-- Formulário de cadastro de contas -->
@@ -74,5 +74,6 @@
 			</h:column>
 		</h:dataTable>
 	</h:form>
-</h:body>
+	</ui:define>
+</ui:composition>
 </html>

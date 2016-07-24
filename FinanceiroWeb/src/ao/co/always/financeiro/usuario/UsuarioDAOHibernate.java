@@ -14,7 +14,7 @@ public class UsuarioDAOHibernate implements UsuarioDAO{
 	}
 	public void actualizar(Usuario usuario) {
 		if(usuario.getPermissao() == null || usuario.getPermissao().size() == 0){
-			Usuario usuarioPermissao = this.carregar(usuario.getCodigo());
+			Usuario usuarioPermissao = this.carregar(usuario.getIdUsuario());
 			usuario.setPermissao(usuarioPermissao.getPermissao());
 			this.session.evict(usuarioPermissao);
 		}

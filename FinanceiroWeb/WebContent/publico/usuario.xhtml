@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:f="http://java.sun.com/jsf/core"
 	  xmlns:h="http://java.sun.com/jsf/html"
-	  xmlns:ui="http://java.sun.com/jsf/facelets">
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:c ="http://java.sun.com/jsp/jstl/core">
 	  
 <ui:composition template="/templates/interna.xhtml">
 	<ui:define name="titulo">
@@ -12,7 +13,7 @@
 	<ui:define name="corpo">
 		<h:form id="cadastro">
 		<h:messages />
-		<h:inputHidden value="#{usuarioBean.usuario.codigo}" />
+		<h:inputHidden value="#{usuarioBean.usuario.idUsuario}" />
 		<h:inputHidden value="#{usuarioBean.usuario.activo}" />
 		<h:inputHidden value="#{usuarioBean.destinoSalvar}" />
 		
@@ -24,7 +25,7 @@
 			 </h:inputText>
 			 
 			 <h:outputLabel value="Data Nascimento:" for="data"/>
-				<h:inputText id="data" label="Data Nascimento" value="#{usuarioBean.usuario.nascimento}" size="10" maxlength="10" required="true">
+				<h:inputText id="data" label="Data Nascimento" value="#{usuarioBean.usuario.dataNascimento}" size="10" maxlength="10" required="true">
 					<f:convertDateTime pattern="dd/MM/yyyy"/>
 				</h:inputText>
 			

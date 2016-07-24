@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -21,17 +23,18 @@ public class Conta implements Serializable {
 	
 	@Id
 	@GeneratedValue
-	@Column(name="id_conta")
+	@Column(name="cod_conta")
 	private Integer idConta;
 	
 	@ManyToOne
 	@OnDelete(action=OnDeleteAction.CASCADE)
-	@JoinColumn(name="id_usuario", nullable = false)
+	@JoinColumn(name="cod_usuario", nullable = false)
 	private Usuario usuario;
 	
 	@Column(name="desc_conta")
 	private String descricao;
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name="data_cadastro", nullable=false, updatable=false)
 	private Date dataCadastro;
 	

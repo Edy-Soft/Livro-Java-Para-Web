@@ -12,10 +12,13 @@
 			<table width="100%">
 				<tr><td>
 					<h:commandButton value="Contas"  action="/restrito/conta"/>
+					<h:commandButton value="Categorias" action="/restrito/categoria" />
+					<h:commandButton value="Lancamento" action="/restrito/lancamento" />
 					<h:selectOneMenu value="#{contextoBean.contaActiva.idConta}"
 						valueChangeListener="#{contextoBean.setContaActiva}" rendered="#{!empty contextoBean}" onchange="submit()">
 					 	<f:selectItems value="#{contaBean.lista}" var="conta" itemValue="#{conta.idConta}" itemLabel="#{conta.descricao}"/>
 					</h:selectOneMenu>
+					
 				</td>
 				<td align="left">
 					<sec:ifAnyGranted roles="ROLE_ADMINISTRADOR">
@@ -23,7 +26,7 @@
 							<h:graphicImage library="imagens" name="administrativo16.png"/>
 						</h:commandLink>
 					</sec:ifAnyGranted>	
-					<h:commandLink action="restrito/principal" title="Principal" >
+					<h:commandLink action="/restrito/principal" title="Principal" >
 						<h:graphicImage library="imagens" name="principal16.png" />
 					</h:commandLink>
 					<h:outputLink value="javascript:void(0)" 
