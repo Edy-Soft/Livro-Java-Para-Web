@@ -1,8 +1,10 @@
 package ao.co.always.financeiro.util;
 
-public class RNException {
+public class RNException extends Throwable{
 
-	public RNException() {
+	private static final long serialVersionUID = 1L;
+
+	public RNException(String string) {
 		// TODO Auto-generated constructor stub
 	}
 

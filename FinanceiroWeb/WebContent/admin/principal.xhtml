@@ -18,7 +18,7 @@
 		<f:facet name="footer">Final da Listagem</f:facet>
 		
 		<h:column>
-			<h:commandLink action="#{usuarioBean.activar}" title="Activar Usuaário">
+			<h:commandLink action="#{usuarioBean.activar}" title="Activar Usuário">
 				<h:graphicImage library="imagens" name="usuario_ativo_#{usuario.activo}.png"
 								style = "border:0"/>
 				<f:setPropertyActionListener target="#{usuarioBean.usuario}" value="#{usuario}" />				

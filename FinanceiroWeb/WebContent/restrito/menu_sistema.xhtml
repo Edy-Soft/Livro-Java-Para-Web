@@ -18,7 +18,7 @@
 						valueChangeListener="#{contextoBean.setContaActiva}" rendered="#{!empty contextoBean}" onchange="submit()">
 					 	<f:selectItems value="#{contaBean.lista}" var="conta" itemValue="#{conta.idConta}" itemLabel="#{conta.descricao}"/>
 					</h:selectOneMenu>
-					
+					<h:commandButton value="Cheque" action="/restrito/cheque"/>
 				</td>
 				<td align="left">
 					<sec:ifAnyGranted roles="ROLE_ADMINISTRADOR">

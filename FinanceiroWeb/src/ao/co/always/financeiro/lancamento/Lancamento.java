@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,6 +20,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import ao.co.always.financeiro.categoria.Categoria;
+import ao.co.always.financeiro.cheque.Cheque;
 import ao.co.always.financeiro.conta.Conta;
 import ao.co.always.financeiro.usuario.Usuario;
 
@@ -56,6 +58,9 @@ public class Lancamento implements Serializable{
 	private String descricao;
 	
 	private BigDecimal valor;
+	
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "lancamento")
+	private Cheque cheque;
 
 	public Integer getIdLancamento() {
 		return idLancamento;
@@ -99,11 +104,18 @@ public class Lancamento implements Serializable{
 	public void setConta(Conta conta) {
 		this.conta = conta;
 	}
+	public Cheque getCheque() {
+		return cheque;
+	}
+	public void setCheque(Cheque cheque) {
+		this.cheque = cheque;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((categoria == null) ? 0 : categoria.hashCode());
+		result = prime * result + ((cheque == null) ? 0 : cheque.hashCode());
 		result = prime * result + ((conta == null) ? 0 : conta.hashCode());
 		result = prime * result + ((data == null) ? 0 : data.hashCode());
 		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
@@ -126,6 +138,11 @@ public class Lancamento implements Serializable{
 			if (other.categoria != null)
 				return false;
 		} else if (!categoria.equals(other.categoria))
+			return false;
+		if (cheque == null) {
+			if (other.cheque != null)
+				return false;
+		} else if (!cheque.equals(other.cheque))
 			return false;
 		if (conta == null) {
 			if (other.conta != null)
