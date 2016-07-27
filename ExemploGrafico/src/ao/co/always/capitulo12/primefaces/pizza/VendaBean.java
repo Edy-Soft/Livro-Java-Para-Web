@@ -2,8 +2,9 @@ package ao.co.always.capitulo12.primefaces.pizza;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;@ManagedBean(name = "vendaBean")
+import javax.faces.bean.RequestScoped;
 
+@ManagedBean(name = "vendaBean")
 @RequestScoped
 public class VendaBean {
 	

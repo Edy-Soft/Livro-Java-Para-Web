@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Enquete entre marcas</title>
+	<script type="text/javascript">
+			var estiloGrafico = {
+				padding :20,
+				legend : {
+					display :"right",
+					spacing :10
+				}
+			};
+		</script>
+</h:head>
+<h:body>
+	<h3>Preferência por Marca</h3>
+	<h:form>
+		<p:pieChart id="votos" value="#{votoBean.votos}" var="voto"
+			live="true" refreshInterval="3000" categoryField="#{voto.opcao}"
+			dataField="#{voto.total}" style="estiloGrafico" />
+	</h:form>
+</h:body>
+</html>

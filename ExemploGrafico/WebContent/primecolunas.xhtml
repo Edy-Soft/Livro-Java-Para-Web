@@ -18,9 +18,15 @@
 	</script>
 </h:head>
 <h:body>
+	<h:form>
 	<h3>Gráfico de Vendas por Paises</h3>
-	<p:pieChart value="#{vendaBean.vendaPais}" var="venda" 
-		categoryField="#{venda.pais}" dataField="#{venda.total}"
-		style="estiloGrafico"/>
+	<p:columnChart value="#{vendaColunaBean.vendaColunas}" var="venda"
+		 xfield="#{venda.ano}"  style="estiloGrafico" titleX="Anos das Vendas"
+		 titleY="Volume de Vendas">
+		<p:chartSeries label="Angola" value="#{venda.vendaAngola}"/>
+		<p:chartSeries label="Brasil" value="#{venda.vendaBrasil}"/>
+		<p:chartSeries label="Alemanha" value="#{venda.vendaAlemanha}"/>
+	</p:columnChart>
+	</h:form>
 </h:body>
 </html>
