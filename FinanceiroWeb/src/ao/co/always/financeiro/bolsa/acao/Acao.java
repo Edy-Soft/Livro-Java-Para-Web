@@ -1,4 +1,5 @@
 package ao.co.always.financeiro.bolsa.acao;
+
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,17 +8,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-
 import ao.co.always.financeiro.usuario.Usuario;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "acao")
 public class Acao implements Serializable{
-	
-	private static final long serialVersionUID = 1679122528267640774L;
 	
 	@Id
 	@GeneratedValue
@@ -30,7 +28,7 @@ public class Acao implements Serializable{
 	@Column(length = 30)
 	private String descricao;
 	
-	@Column(nullable = false)
+	@Column(nullable= false)
 	private Integer quantidade;
 	
 	@Column(nullable = false, length = 1)
@@ -76,9 +74,6 @@ public class Acao implements Serializable{
 	}
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
-	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 	@Override
 	public int hashCode() {
@@ -133,6 +128,7 @@ public class Acao implements Serializable{
 			return false;
 		return true;
 	}
+	
 	
 
 }

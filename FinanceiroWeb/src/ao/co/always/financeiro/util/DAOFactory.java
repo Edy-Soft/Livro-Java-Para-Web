@@ -1,4 +1,6 @@
 package ao.co.always.financeiro.util;
+import ao.co.always.financeiro.bolsa.acao.AcaoDAO;
+import ao.co.always.financeiro.bolsa.acao.AcaoDAOHibernate;
 import ao.co.always.financeiro.categoria.CategoriaDAO;
 import ao.co.always.financeiro.categoria.CategoriaDAOHibernate;
 import ao.co.always.financeiro.cheque.ChequeDAO;
@@ -36,6 +38,11 @@ public class DAOFactory {
 		ChequeDAOHibernate chequeDAO = new ChequeDAOHibernate();
 		chequeDAO.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
 		return chequeDAO;
+	}
+	public static AcaoDAO criarAcaoDAO(){
+		AcaoDAOHibernate acaoDAO = new AcaoDAOHibernate();
+		acaoDAO.SetSession(HibernateUtil.getSessionFactory().getCurrentSession());
+		return acaoDAO;
 	}
 
 }

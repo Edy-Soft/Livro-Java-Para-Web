@@ -17,6 +17,7 @@
 		<mapping class="ao.co.always.financeiro.categoria.Categoria" />
 		<mapping class="ao.co.always.financeiro.lancamento.Lancamento" />
 		<mapping class="ao.co.always.financeiro.cheque.Cheque" />
+		<mapping class="ao.co.always.financeiro.bolsa.acao.Acao" />
 		
 	</session-factory>
 </hibernate-configuration>
