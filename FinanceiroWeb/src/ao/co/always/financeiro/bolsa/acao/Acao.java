@@ -51,7 +51,7 @@ public class Acao implements Serializable{
 	public void setSigla(String sigla) {
 		this.sigla = sigla;
 	}
-	public String getDescricao() {
+	public String getDescricao() { 
 		return descricao;
 	}
 	public void setDescricao(String descricao) {
