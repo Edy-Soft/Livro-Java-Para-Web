@@ -2,6 +2,8 @@
 
 <!-- DataSource JNDI -->
 <Context reloadable="true" >
+
+<!-- Conexão com o servidor Apache -->
 	<Resource	name="jdbc/FinanceiroDB" 
 				auth="Container" 
 				type="javax.sql.DataSource"
@@ -12,5 +14,15 @@
 				password="2016" 
 				driverClassName="com.mysql.jdbc.Driver"
 				url="jdbc:mysql://localhost:3306/financeiro?autoReconnect=true"/>
+				
+<!-- Conexão com o servidor Apache James  -->				
+	<Resource   name="mail/Session" 
+				auth="Container"
+				type="javax.mail.Session"
+				mail.smtp.host="servidor"
+				mail.smtp.port="porta"
+				mail.smtp.auth="true"
+				mail.smtp.user="login"
+				mail.smtp.passord="senha"/>
 </Context>
 		

@@ -1,9 +1,11 @@
 package ao.co.always.financeiro.util;
 
-public class UtilException {
+public class UtilException extends Throwable{
+	
+	private static final long serialVersionUID = 1L;
 
-	public UtilException() {
-		// TODO Auto-generated constructor stub
+	public UtilException(String string){
+		
 	}
 
 }

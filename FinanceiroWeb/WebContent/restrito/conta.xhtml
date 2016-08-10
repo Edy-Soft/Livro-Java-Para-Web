@@ -4,7 +4,8 @@
 	   xmlns:f="http://java.sun.com/jsf/core"
 	   xmlns:h="http://java.sun.com/jsf/html"
 	   xmlns:ui="http://java.sun.com/jsf/facelets"
-	   xmlns:sec="http://www.springframework.org/security/facelets/tags">
+	   xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	   xmlns:p="http://primefaces.prime.com.tr/ui">
 
 	<ui:composition template="/templates/interna.xhtml">
 	<ui:define name="titulo">
@@ -74,6 +75,30 @@
 			</h:column>
 		</h:dataTable>
 	</h:form>
+	<h:panelGrid columns="4">
+			<h:form id="impressao">
+				<h:commandLink>
+					<f:setPropertyActionListener target="#{contaBean.tipoRelatorio}" value="1"/>
+					<p:fileDownload value="#{contaBean.arquivoRetorno}"/>
+					<h:graphicImage library="imagens" name="pdf.png" title="Imprimir PDF"/>
+				</h:commandLink>
+				<h:commandLink>
+					<f:setPropertyActionListener target="#{contaBean.tipoRelatorio}" value="2"/>
+					<p:fileDownload value="#{contaBean.arquivoRetorno}"/>
+					<h:graphicImage library="imagens" name="excel.png" title="Imprimir Excel"/>
+				</h:commandLink>
+				<h:commandLink>
+					<f:setPropertyActionListener target="#{contaBean.tipoRelatorio}" value="3"/>
+					<p:fileDownload value="#{contaBean.arquivoRetorno}"/>
+					<h:graphicImage library="imagens" name="html.png" title="Imprimir Html"/>
+				</h:commandLink>
+				<h:commandLink>
+					<f:setPropertyActionListener target="#{contaBean.tipoRelatorio}" value="4"/>
+					<p:fileDownload value="#{contaBean.arquivoRetorno}"/>
+					<h:graphicImage library="imagens" name="ods.png" title="Imprimir Planilha Opem Office"/>
+				</h:commandLink>
+			</h:form>
+		</h:panelGrid>
 	</ui:define>
 </ui:composition>
 </html>

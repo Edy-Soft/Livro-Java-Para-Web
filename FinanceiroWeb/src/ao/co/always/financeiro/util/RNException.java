@@ -7,5 +7,4 @@ public class RNException extends Throwable{
 	public RNException(String string) {
 		// TODO Auto-generated constructor stub
 	}
-
 }

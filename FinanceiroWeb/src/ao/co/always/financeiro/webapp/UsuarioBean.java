@@ -8,6 +8,7 @@ import ao.co.always.financeiro.conta.Conta;
 import ao.co.always.financeiro.conta.ContaRN;
 import ao.co.always.financeiro.usuario.Usuario;
 import ao.co.always.financeiro.usuario.UsuarioRN;
+import ao.co.always.financeiro.util.RNException;
 
 @ManagedBean(name="usuarioBean")
 @RequestScoped
@@ -34,7 +35,7 @@ public class UsuarioBean {
 		String senha = this.usuario.getSenha();
 		if(!senha.equals(this.confirmaSenha)){
 			FacesMessage facesMessage = new FacesMessage("Confirme a sua senha");
-			context.addMessage(null, facesMessage);
+			context.addMessage(null, facesMessage);	
 			return null;
 		}
 		UsuarioRN usuarioRN = new UsuarioRN();
@@ -46,6 +47,15 @@ public class UsuarioBean {
 			ContaRN contaRN = new ContaRN();
 			contaRN.salvar(this.conta);
 		}
+		if (this.destinoSalvar.equals("usuarioSucesso")) {
+			try {
+				usuarioRN.enviarEmailPosCadastramento(this.usuario);
+			} catch (RNException e) {
+				FacesMessage facesMessage = new FacesMessage("Não foi possível enviar o e-mail de cadastro do usuário. Erro: " + e.getMessage());
+				context.addMessage(null, facesMessage);
+				return null;
+			}
+		} 
 		
 		return this.destinoSalvar;
 	}

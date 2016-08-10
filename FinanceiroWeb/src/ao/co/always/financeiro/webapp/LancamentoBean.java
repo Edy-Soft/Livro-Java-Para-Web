@@ -3,14 +3,14 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
-
+import org.primefaces.model.StreamedContent;
 import ao.co.always.financeiro.categoria.Categoria;
 import ao.co.always.financeiro.cheque.Cheque;
 import ao.co.always.financeiro.cheque.ChequeId;
@@ -20,10 +20,11 @@ import ao.co.always.financeiro.lancamento.Lancamento;
 import ao.co.always.financeiro.lancamento.LancamentoRN;
 import ao.co.always.financeiro.util.ContextoUtil;
 import ao.co.always.financeiro.util.RNException;
+import ao.co.always.financeiro.util.UtilException;
 
 @ManagedBean(name="lancamentoBean")
 @ViewScoped
-public class LancamentoBean {
+public class LancamentoBean<K, V> {
 	
 	private List<Lancamento> lista;
 	private List<Double> saldos = new ArrayList<Double>();
@@ -32,6 +33,9 @@ public class LancamentoBean {
 	private float saldoGeral;
 	private Lancamento editado = new Lancamento();
 	private Integer numeroCheque;
+	private java.util.Date dataInicialRelatorio;
+	private java.util.Date dataFinalRelatorio;
+	private StreamedContent arquivoRetorno;
 
 	public LancamentoBean(){
 		this.novo();
@@ -144,12 +148,40 @@ public class LancamentoBean {
 			}
 		}
 	}
-
 	public void excluir(){
 		LancamentoRN lancamentoRN = new LancamentoRN();
 		this.editado = lancamentoRN.carregar(this.editado.getIdLancamento());
 		lancamentoRN.excluir(this.editado);
 		this.lista = null;
+	}
+	@SuppressWarnings("unchecked")
+	public StreamedContent getArquivoRetorno() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		ContextoBean contextoBean = ContextoUtil.getContextoBean();
+		String usuario = contextoBean.getUsuarioLogado().getLogin();
+		String nomeRelatorioJasper = "extrato";
+		String nomeRelatorioSaida = usuario + "_extrato";
+		LancamentoRN lancamentoRN = new LancamentoRN();
+		GregorianCalendar calendario = new GregorianCalendar();
+		calendario.setTime(this.getDataInicialRelatorio());
+		calendario.add(Calendar.DAY_OF_MONTH, -1);
+		Date dataSaldo = new Date(calendario.getTimeInMillis());
+		RelatorioUtil relatorioUtil = new RelatorioUtil();
+		@SuppressWarnings("rawtypes")
+		HashMap parametrosRelatorio = new HashMap();
+		parametrosRelatorio.put("codigoUsuario", contextoBean.getUsuarioLogado().getIdUsuario());
+		parametrosRelatorio.put("numeroConta", contextoBean.getContaActiva().getIdConta());
+		parametrosRelatorio.put("dataInicial", this.dataInicialRelatorio);
+		parametrosRelatorio.put("dataFinal", this.dataFinalRelatorio);
+		parametrosRelatorio.put("saldoAnterior", lancamentoRN.saldo(contextoBean.getContaActiva(), dataSaldo));
+		try{
+			this.arquivoRetorno = relatorioUtil.geraRelatorio(parametrosRelatorio, nomeRelatorioJasper, 
+					nomeRelatorioSaida, RelatorioUtil.RELATORIO_PDF);
+	}catch(UtilException e){
+		context.addMessage(null, new FacesMessage(e.getMessage()));
+		return null;
+	}
+		return this.arquivoRetorno;
 	}
 	public List<Lancamento> getLista() {
 		return lista;
@@ -190,6 +222,23 @@ public class LancamentoBean {
 	public void setListaFuturos(List<Lancamento> listaFuturos) {
 		this.listaFuturos = listaFuturos;
 	}
+	public Date getDataInicialRelatorio() {
+		return dataInicialRelatorio;
+	}
+	public void setDataInicialRelatorio(Date dataInicialRelatorio) {
+		this.dataInicialRelatorio = dataInicialRelatorio;
+	}
+	
+	public Date getDataFinalRelatorio() {
+		return dataFinalRelatorio;
+	}
+	public void setDataFinalRelatorio(Date dataFinalRelatorio) {
+		this.dataFinalRelatorio = dataFinalRelatorio;
+	}
+	public void setArquivoRetorno(StreamedContent arquivoRetorno) {
+		this.arquivoRetorno = arquivoRetorno;
+	}
+	
 	
 }
  
