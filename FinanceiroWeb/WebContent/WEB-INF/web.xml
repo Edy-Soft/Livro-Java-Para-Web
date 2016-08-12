@@ -44,6 +44,11 @@
   	<url-pattern>*.jsf</url-pattern>
   </filter-mapping>
   
+  <filter-mapping>
+  	<filter-name>conexaoFilter</filter-name>
+	<url-pattern>/webservice/*</url-pattern>
+  </filter-mapping>
+  
   <!-- Spring Security -->
   <resource-ref>
   	<description>DataSource FinanceiroDB</description>
@@ -81,5 +86,21 @@
 		<res-type>javax.mail.Session</res-type>
 		<res-auth>Container</res-auth>
 	</resource-ref>
+	
+	<!-- Configurações do Web Service -->
+	<listener>
+		<listener-class>com.sun.xml.ws.transport.http.servlet.WSServletContextListener</listener-class>
+	</listener>
+	<servlet>
+		<description>Webservices do Financeiro</description>
+		<display-name>financeiroWS</display-name>
+		<servlet-name>financeiroWS</servlet-name>
+		<servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>financeiroWS</servlet-name>
+		<url-pattern>/webservice/financeiroWS</url-pattern>
+	</servlet-mapping>
   
 </web-app>

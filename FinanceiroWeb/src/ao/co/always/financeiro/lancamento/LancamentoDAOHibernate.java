@@ -40,20 +40,24 @@ public class LancamentoDAOHibernate implements LancamentoDAO{
 	 }
 	 public float saldo(Conta conta, Date data){
 		 StringBuffer sql = new StringBuffer();
-		 sql.append("select sum(l.valor * c.factor");
-		 sql.append("from LANCAMNETO l,");
-		 sql.append("  CATEGORIA c");
-		 sql.append("where l.cod_categoria = c.cod_categoria");
-		 sql.append("and l.cod_conta :conta");
-		 sql.append("and l.data <= :data");
-		 SQLQuery query = this.session.createSQLQuery(sql.toString());
-		 query.setParameter("conta", conta.getIdConta());
-		 query.setParameter("data", data);
-		 BigDecimal saldo = (BigDecimal) query.uniqueResult();
-		 	if (saldo != null){
-		 		return saldo.floatValue();
-		 	}
-		 	return 0f;
+			sql.append("select sum(l.valor * c.factor)");
+			sql.append("  from LANCAMENTO l,");
+			sql.append("	     CATEGORIA c");
+			sql.append(" where l.cod_categoria = c.cod_categoria");
+			sql.append("   and l.cod_conta = :conta");
+			sql.append("   and l.data <= :data");
+
+			SQLQuery query = this.session.createSQLQuery(sql.toString());
+
+			query.setParameter("conta", conta.getIdConta());
+			query.setParameter("data", data);
+
+			BigDecimal saldo = (BigDecimal) query.uniqueResult();
+
+			if (saldo != null) {
+				return saldo.floatValue();
+			}
+			return 0f;
 		 
 	 }
 }

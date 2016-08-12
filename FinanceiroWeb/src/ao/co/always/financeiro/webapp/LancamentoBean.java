@@ -24,7 +24,7 @@ import ao.co.always.financeiro.util.UtilException;
 
 @ManagedBean(name="lancamentoBean")
 @ViewScoped
-public class LancamentoBean<K, V> {
+public class LancamentoBean {
 	
 	private List<Lancamento> lista;
 	private List<Double> saldos = new ArrayList<Double>();
@@ -52,7 +52,7 @@ public class LancamentoBean<K, V> {
 		}
 	}
 	
-	public List<Lancamento> listar() {
+	public List<Lancamento> getLista() {
 		if (this.lista == null) {
 			ContextoBean contextoBean = ContextoUtil.getContextoBean();
 			Conta conta = contextoBean.getContaActiva();
@@ -183,9 +183,7 @@ public class LancamentoBean<K, V> {
 	}
 		return this.arquivoRetorno;
 	}
-	public List<Lancamento> getLista() {
-		return lista;
-	}
+	
 	public void setLista(List<Lancamento> lista) {
 		this.lista = lista;
 	}
@@ -228,7 +226,6 @@ public class LancamentoBean<K, V> {
 	public void setDataInicialRelatorio(Date dataInicialRelatorio) {
 		this.dataInicialRelatorio = dataInicialRelatorio;
 	}
-	
 	public Date getDataFinalRelatorio() {
 		return dataFinalRelatorio;
 	}
@@ -237,6 +234,80 @@ public class LancamentoBean<K, V> {
 	}
 	public void setArquivoRetorno(StreamedContent arquivoRetorno) {
 		this.arquivoRetorno = arquivoRetorno;
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((arquivoRetorno == null) ? 0 : arquivoRetorno.hashCode());
+		result = prime * result + ((dataFinalRelatorio == null) ? 0 : dataFinalRelatorio.hashCode());
+		result = prime * result + ((dataInicialRelatorio == null) ? 0 : dataInicialRelatorio.hashCode());
+		result = prime * result + ((editado == null) ? 0 : editado.hashCode());
+		result = prime * result + ((lista == null) ? 0 : lista.hashCode());
+		result = prime * result + ((listaAtehoje == null) ? 0 : listaAtehoje.hashCode());
+		result = prime * result + ((listaFuturos == null) ? 0 : listaFuturos.hashCode());
+		result = prime * result + ((numeroCheque == null) ? 0 : numeroCheque.hashCode());
+		result = prime * result + Float.floatToIntBits(saldoGeral);
+		result = prime * result + ((saldos == null) ? 0 : saldos.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		LancamentoBean other = (LancamentoBean) obj;
+		if (arquivoRetorno == null) {
+			if (other.arquivoRetorno != null)
+				return false;
+		} else if (!arquivoRetorno.equals(other.arquivoRetorno))
+			return false;
+		if (dataFinalRelatorio == null) {
+			if (other.dataFinalRelatorio != null)
+				return false;
+		} else if (!dataFinalRelatorio.equals(other.dataFinalRelatorio))
+			return false;
+		if (dataInicialRelatorio == null) {
+			if (other.dataInicialRelatorio != null)
+				return false;
+		} else if (!dataInicialRelatorio.equals(other.dataInicialRelatorio))
+			return false;
+		if (editado == null) {
+			if (other.editado != null)
+				return false;
+		} else if (!editado.equals(other.editado))
+			return false;
+		if (lista == null) {
+			if (other.lista != null)
+				return false;
+		} else if (!lista.equals(other.lista))
+			return false;
+		if (listaAtehoje == null) {
+			if (other.listaAtehoje != null)
+				return false;
+		} else if (!listaAtehoje.equals(other.listaAtehoje))
+			return false;
+		if (listaFuturos == null) {
+			if (other.listaFuturos != null)
+				return false;
+		} else if (!listaFuturos.equals(other.listaFuturos))
+			return false;
+		if (numeroCheque == null) {
+			if (other.numeroCheque != null)
+				return false;
+		} else if (!numeroCheque.equals(other.numeroCheque))
+			return false;
+		if (Float.floatToIntBits(saldoGeral) != Float.floatToIntBits(other.saldoGeral))
+			return false;
+		if (saldos == null) {
+			if (other.saldos != null)
+				return false;
+		} else if (!saldos.equals(other.saldos))
+			return false;
+		return true;
 	}
 	
 	

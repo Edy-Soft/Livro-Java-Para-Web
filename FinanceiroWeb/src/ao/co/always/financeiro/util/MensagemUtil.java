@@ -6,7 +6,7 @@ import javax.faces.context.FacesContext;
 
 public class MensagemUtil {
 	
-	private static final String PACOTE_MENSAGENS_IDIOMAS = "ao.co.always.financeiro.idioma";
+	private static final String PACOTE_MENSAGENS_IDIOMAS = "ao.co.always.financeiro.idioma.mensagens";
 	
 	public static String getMensagem(String propriedade){
 		FacesContext context = FacesContext.getCurrentInstance();
