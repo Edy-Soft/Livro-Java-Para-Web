@@ -1,2 +1,6 @@
 eclipse.preferences.version=1
+encoding//src/ao/co/always/financeiro/bolsa/acao/AcaoRN.java=UTF-8
 encoding//src/ao/co/always/financeiro/util/HibernateUtil.java=UTF-8
+encoding//src/ao/co/always/financeiro/webapp/LancamentoBean.java=UTF-8
+encoding//src/ao/co/always/financeiro/webapp/RelatorioUtil.java=UTF-8
+encoding//src/ao/co/always/financeiro/webapp/YahooFinanceUtil.java=UTF-8

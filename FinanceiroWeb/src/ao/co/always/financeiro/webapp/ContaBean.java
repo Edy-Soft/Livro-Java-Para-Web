@@ -65,11 +65,11 @@ public class ContaBean {
 		FacesContext context = FacesContext.getCurrentInstance();
 		ContextoBean contextoBean = ContextoUtil.getContextoBean();
 		String usuario = contextoBean.getUsuarioLogado().getLogin();
-		String nomeRelatorioJasper = "Contas";
+		String nomeRelatorioJasper = "contas";
 		String nomeRelatorioSaida = usuario + "_Contas";
 		RelatorioUtil relatorioUtil = new RelatorioUtil();
 		HashMap<String, Integer> parametrosRelatorio = new HashMap<String, Integer>();
-		parametrosRelatorio.put("codigoUsuario", contextoBean.getUsuarioLogado().getIdUsuario());
+		parametrosRelatorio.put("codigoUsuario1", contextoBean.getUsuarioLogado().getIdUsuario());
 		try {
 			this.arquivoRetorno = relatorioUtil.geraRelatorio(parametrosRelatorio, nomeRelatorioJasper, nomeRelatorioSaida, this.tipoRelatorio);
 		} catch (UtilException e) {

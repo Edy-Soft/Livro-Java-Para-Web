@@ -81,9 +81,9 @@ public class RelatorioUtil {
 			InputStream conteudoRelatorio = new FileInputStream(arquivoGerado);
 			arquivoRetorno = new DefaultStreamedContent(conteudoRelatorio, "application/" + extensaoArquivoExportado, nomeRelatorioSaida + "." + extensaoArquivoExportado);
 		} catch (JRException e) {
-			throw new UtilException("Não foi possível gerar o relatório.");
+			throw new UtilException("NÃ£o foi possivel imprimir o relatÃ³rio");
 		} catch (FileNotFoundException e) {
-			throw new UtilException("Arquivo do relatório não encontrado.");
+			throw new UtilException("Arquivo do relat nÃ£o encontrado");
 		}
 		return arquivoRetorno;
 	}
@@ -96,7 +96,7 @@ public class RelatorioUtil {
 			javax.sql.DataSource ds = (javax.sql.DataSource) envContext.lookup("jdbc/FinanceiroDB");
 			conexao = (java.sql.Connection) ds.getConnection();
 		} catch (NamingException e) {
-			throw new UtilException("Não foi possível encontrar o nome da conexão do banco.");
+			throw new UtilException("NÃ£o foi possÃ­vel encontrar o nome da conexÃ£o do banco.");
 		} catch (SQLException e) {
 			throw new UtilException("Ocorreu um erro de SQL.");
 		}

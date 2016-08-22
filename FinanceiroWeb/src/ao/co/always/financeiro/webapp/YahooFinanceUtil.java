@@ -5,31 +5,32 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+
 import ao.co.always.financeiro.bolsa.acao.Acao;
 
 public class YahooFinanceUtil {
-	
+
 	private String							local;
 	private String[]						informacoesCotacao;
 
-	public static final char		ORIGEM_BOVESPA	= 'B';
-	public static final char		ORIGEM_MUNDO	= 'M';
+	public static final char		ORIGEM_BOVESPA										= 'B';
+	public static final char		ORIGEM_MUNDO											= 'M';
 
-	public static final String	LOCAL_BOVESPA = "br";
-	public static final String	LOCAL_MUNDO	= "download";
-	public static final String	POSFIXO_ACAO_BOVESPA = ".SA";
-	public static final String	SEPARADOR_BOVESPA	= ";";
-	public static final String	SEPARADOR_MUNDO	= ",";
-	public static final String	INDICE_BOVESPA	= "^BVSP";
-	public static final int			SIGLA_ACAO_INDICE = 0;
-	public static final int			ULTIMO_PRECO_DIA_ACAO_INDICE = 1;
-	public static final int			DATA_NEGOCIACAO_ACAO_INDICE	= 2;
-	public static final int			HORA_NEGOCIACAO_ACAO_INDICE	= 3;
-	public static final int			VARIACAO_DIA_ACAO_INDICE = 4;
-	public static final int			PRECO_ABERTURA_DIA_ACAO_INDICE	= 5;
-	public static final int			MAIOR_PRECO_DIA_ACAO_INDICE	= 6;
-	public static final int			MENOR_PRECO_DIA_ACAO_INDICE	= 7;
-	public static final int			VOLUME_NEGOCIADO_DIA_ACAO_INDICE = 8;
+	public static final String	LOCAL_BOVESPA											= "br";
+	public static final String	LOCAL_MUNDO												= "download";
+	public static final String	POSFIXO_ACAO_BOVESPA							= ".SA";
+	public static final String	SEPARADOR_BOVESPA									= ";";
+	public static final String	SEPARADOR_MUNDO										= ",";
+	public static final String	INDICE_BOVESPA										= "^BVSP";
+	public static final int			SIGLA_ACAO_INDICE									= 0;
+	public static final int			ULTIMO_PRECO_DIA_ACAO_INDICE			= 1;
+	public static final int			DATA_NEGOCIACAO_ACAO_INDICE				= 2;
+	public static final int			HORA_NEGOCIACAO_ACAO_INDICE				= 3;
+	public static final int			VARIACAO_DIA_ACAO_INDICE					= 4;
+	public static final int			PRECO_ABERTURA_DIA_ACAO_INDICE		= 5;
+	public static final int			MAIOR_PRECO_DIA_ACAO_INDICE				= 6;
+	public static final int			MENOR_PRECO_DIA_ACAO_INDICE				= 7;
+	public static final int			VOLUME_NEGOCIADO_DIA_ACAO_INDICE	= 8;
 
 	public YahooFinanceUtil(Acao acao) {
 		if (acao.getOrigem() == YahooFinanceUtil.ORIGEM_BOVESPA) {
@@ -66,11 +67,11 @@ public class YahooFinanceUtil {
 			arquivo.close();
 			valorRetorno = this.informacoesCotacao[indiceInformacao];
 		} catch (MalformedURLException e) {
-			throw new MalformedURLException("URL Inv·lida. Erro: " + e.getMessage());
+			throw new MalformedURLException("URL Inv√°lida. Erro: " + e.getMessage());
 		} catch (IOException e) {
 			throw new IOException("Problema de escrita e ou leitura. Erro: " + e.getMessage());
 		} catch (ArrayIndexOutOfBoundsException e) {
-			throw new ArrayIndexOutOfBoundsException("N„o existe o Ìndice informado no array. Erro: " + e.getMessage());
+			throw new ArrayIndexOutOfBoundsException("N√£o existe o √≠ndice informado no array. Erro: " + e.getMessage());
 		}
 		return valorRetorno;
 	}

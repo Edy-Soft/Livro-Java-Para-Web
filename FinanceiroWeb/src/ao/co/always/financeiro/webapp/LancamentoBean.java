@@ -116,11 +116,11 @@ public class LancamentoBean {
 			Cheque cheque = chequeRN.carregar(chequeId);
 			FacesContext context = FacesContext.getCurrentInstance();
 			if (cheque == null){
-				FacesMessage msg = new FacesMessage("Cheque n„o cadastrado");
+				FacesMessage msg = new FacesMessage("Cheque n√£o cadastrado");
 				context.addMessage(null, msg);
 				return;
 			}else if (cheque.getSituacao() == Cheque.SITUACAO_CHEQUE_CANCELADO){
-				FacesMessage msg = new FacesMessage("Cheque j· cancelado");
+				FacesMessage msg = new FacesMessage("Cheque j√° cancelado");
 				context.addMessage(null, msg);
 			}else{
 				this.editado.setCheque(cheque);
@@ -159,28 +159,30 @@ public class LancamentoBean {
 		FacesContext context = FacesContext.getCurrentInstance();
 		ContextoBean contextoBean = ContextoUtil.getContextoBean();
 		String usuario = contextoBean.getUsuarioLogado().getLogin();
-		String nomeRelatorioJasper = "extrato";
-		String nomeRelatorioSaida = usuario + "_extrato";
+		String nomeRelatorioJasper = "Extrato";
+		String nomeRelatorioSaida = usuario + "_Extrato";
+		
 		LancamentoRN lancamentoRN = new LancamentoRN();
 		GregorianCalendar calendario = new GregorianCalendar();
 		calendario.setTime(this.getDataInicialRelatorio());
 		calendario.add(Calendar.DAY_OF_MONTH, -1);
 		Date dataSaldo = new Date(calendario.getTimeInMillis());
+		
 		RelatorioUtil relatorioUtil = new RelatorioUtil();
 		@SuppressWarnings("rawtypes")
 		HashMap parametrosRelatorio = new HashMap();
 		parametrosRelatorio.put("codigoUsuario", contextoBean.getUsuarioLogado().getIdUsuario());
 		parametrosRelatorio.put("numeroConta", contextoBean.getContaActiva().getIdConta());
-		parametrosRelatorio.put("dataInicial", this.dataInicialRelatorio);
-		parametrosRelatorio.put("dataFinal", this.dataFinalRelatorio);
+		parametrosRelatorio.put("dataInicial", this.getDataInicialRelatorio());
+		parametrosRelatorio.put("dataFinal", this.getDataFinalRelatorio());
 		parametrosRelatorio.put("saldoAnterior", lancamentoRN.saldo(contextoBean.getContaActiva(), dataSaldo));
-		try{
-			this.arquivoRetorno = relatorioUtil.geraRelatorio(parametrosRelatorio, nomeRelatorioJasper, 
-					nomeRelatorioSaida, RelatorioUtil.RELATORIO_PDF);
-	}catch(UtilException e){
-		context.addMessage(null, new FacesMessage(e.getMessage()));
-		return null;
-	}
+
+		try {
+			this.arquivoRetorno = relatorioUtil.geraRelatorio(parametrosRelatorio, nomeRelatorioJasper, nomeRelatorioSaida, RelatorioUtil.RELATORIO_PDF);
+		} catch (UtilException e) {
+			context.addMessage(null, new FacesMessage(e.getMessage()));
+			return null;
+		} 
 		return this.arquivoRetorno;
 	}
 	
@@ -235,81 +237,6 @@ public class LancamentoBean {
 	public void setArquivoRetorno(StreamedContent arquivoRetorno) {
 		this.arquivoRetorno = arquivoRetorno;
 	}
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((arquivoRetorno == null) ? 0 : arquivoRetorno.hashCode());
-		result = prime * result + ((dataFinalRelatorio == null) ? 0 : dataFinalRelatorio.hashCode());
-		result = prime * result + ((dataInicialRelatorio == null) ? 0 : dataInicialRelatorio.hashCode());
-		result = prime * result + ((editado == null) ? 0 : editado.hashCode());
-		result = prime * result + ((lista == null) ? 0 : lista.hashCode());
-		result = prime * result + ((listaAtehoje == null) ? 0 : listaAtehoje.hashCode());
-		result = prime * result + ((listaFuturos == null) ? 0 : listaFuturos.hashCode());
-		result = prime * result + ((numeroCheque == null) ? 0 : numeroCheque.hashCode());
-		result = prime * result + Float.floatToIntBits(saldoGeral);
-		result = prime * result + ((saldos == null) ? 0 : saldos.hashCode());
-		return result;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		LancamentoBean other = (LancamentoBean) obj;
-		if (arquivoRetorno == null) {
-			if (other.arquivoRetorno != null)
-				return false;
-		} else if (!arquivoRetorno.equals(other.arquivoRetorno))
-			return false;
-		if (dataFinalRelatorio == null) {
-			if (other.dataFinalRelatorio != null)
-				return false;
-		} else if (!dataFinalRelatorio.equals(other.dataFinalRelatorio))
-			return false;
-		if (dataInicialRelatorio == null) {
-			if (other.dataInicialRelatorio != null)
-				return false;
-		} else if (!dataInicialRelatorio.equals(other.dataInicialRelatorio))
-			return false;
-		if (editado == null) {
-			if (other.editado != null)
-				return false;
-		} else if (!editado.equals(other.editado))
-			return false;
-		if (lista == null) {
-			if (other.lista != null)
-				return false;
-		} else if (!lista.equals(other.lista))
-			return false;
-		if (listaAtehoje == null) {
-			if (other.listaAtehoje != null)
-				return false;
-		} else if (!listaAtehoje.equals(other.listaAtehoje))
-			return false;
-		if (listaFuturos == null) {
-			if (other.listaFuturos != null)
-				return false;
-		} else if (!listaFuturos.equals(other.listaFuturos))
-			return false;
-		if (numeroCheque == null) {
-			if (other.numeroCheque != null)
-				return false;
-		} else if (!numeroCheque.equals(other.numeroCheque))
-			return false;
-		if (Float.floatToIntBits(saldoGeral) != Float.floatToIntBits(other.saldoGeral))
-			return false;
-		if (saldos == null) {
-			if (other.saldos != null)
-				return false;
-		} else if (!saldos.equals(other.saldos))
-			return false;
-		return true;
-	}
-	
 	
 }
  

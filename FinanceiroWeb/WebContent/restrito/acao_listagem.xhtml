@@ -17,7 +17,7 @@
 						<h:commandLink title="gráficos da ação">
 							<f:ajax execute="@this" render=":graficosAcao" />
 							<h:outputText value="#{acaoVirtual.acao.sigla}" />
-							<f:setPropertyActionListener target="#{acaoBean.selecionado}"
+							<f:setPropertyActionListener target="#{acaoBean.selecionada}"
 								value="#{acaoVirtual}" />
 						</h:commandLink>
 					</h:column>
@@ -53,7 +53,7 @@
 							<f:ajax execute="@this"
 								render=":edicao :listagem :graficosCarteira" />
 							<h:graphicImage library="imagens" name="editar16.png" />
-							<f:setPropertyActionListener target="#{acaoBean.selecionado}"
+							<f:setPropertyActionListener target="#{acaoBean.selecionada}"
 								value="#{acaoVirtual}" />
 						</h:commandLink>
 					</h:column>
@@ -62,7 +62,7 @@
 							<f:ajax execute="@this"
 								render=":listagem :graficosCarteira :graficosAcao" />
 							<h:graphicImage library="imagens" name="excluir16.png" />
-							<f:setPropertyActionListener target="#{acaoBean.selecionado}"
+							<f:setPropertyActionListener target="#{acaoBean.selecionada}"
 								value="#{acaoVirtual}" />
 						</h:commandLink>
 					</h:column>

@@ -7,7 +7,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"	
 	xmlns:p="http://primefaces.prime.com.tr/ui">
 <ui:composition>
-	<h:form id="listagem" >
+	<h:form id="listagem">
 		<p:dataTable 
 			style="height: 200px"
 			scrollable="false" 
@@ -21,7 +21,7 @@
 				</p:commandLink>
 			</p:column>
 			<p:column width="15">
-				<p:commandLink action="#{lancamentoBean.excluir}" update="listagem" onclick="if (!confirm('Confirma a exclusão do lançamento #{lancamento.descricao}?')) return false;">
+				<p:commandLink action="#{lancamentoBean.excluir}" process="@this" update="listagem" onclick="if (!confirm('Confirma a exclusão do lançamento #{lancamento.descricao}?')) return false;">
 					<h:graphicImage library="imagens" name="excluir16.png"/>
 					<f:setPropertyActionListener target="#{lancamentoBean.editado}" value="#{lancamento}" />
 				</p:commandLink>

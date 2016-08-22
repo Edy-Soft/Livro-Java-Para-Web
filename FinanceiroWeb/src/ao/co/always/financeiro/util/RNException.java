@@ -1,6 +1,6 @@
 package ao.co.always.financeiro.util;
 
-public class RNException extends Throwable{
+public class RNException extends Exception{
 
 	private static final long serialVersionUID = 1L;
 

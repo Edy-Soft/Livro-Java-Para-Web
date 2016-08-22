@@ -50,7 +50,7 @@ public class AcaoRN {
 				}
 			}
 		}catch(RNException e){
-			throw new RNException("Não foi possivel listar ações. Erro; " + e.getMessage());
+			throw new RNException("NÃ£o foi possivel listar acÃ§Ãµes. Erro; " + e.getMessage());
 		}
 		return listaAcaoVirtual;
 	}
@@ -61,7 +61,7 @@ public class AcaoRN {
 			yahooFinanceUtil = new YahooFinanceUtil(acao);
 			informacao = yahooFinanceUtil.retornaCotacao(indiceInformacao, acao.getSigla());
 		}catch (IOException e){
-			throw new RNException("Não foi possivel recuperar cotação. Erro: " + e.getMessage());
+			throw new RNException("NÃ£o foi possivel recuperar cotaÃ§Ã£o. Erro: " + e.getMessage());
 		}
 		return informacao;
 	}

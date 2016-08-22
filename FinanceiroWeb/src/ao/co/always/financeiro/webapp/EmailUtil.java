@@ -1,6 +1,8 @@
 package ao.co.always.financeiro.webapp;
+
 import java.util.Date;
 import java.util.Properties;
+
 import javax.mail.Session;
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -8,6 +10,7 @@ import javax.naming.NamingException;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
 import ao.co.always.financeiro.util.UtilException;
+
 
 public class EmailUtil {
 
@@ -31,9 +34,9 @@ public class EmailUtil {
 			email.setSentDate(new Date());
 			email.send();
 		} catch (EmailException e) {
-			throw new UtilException("");
+			throw new UtilException(e);
 		} catch (NamingException e) {
-			throw new UtilException("");
+			throw new UtilException(e);
 		}
 	}
 }
